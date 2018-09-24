@@ -8,7 +8,7 @@ class Solution:
         if nums is None or len(nums) == 0:
             return result
         l = []
-        l.sort()
+        nums.sort()
         self.subset_help(result, l, nums, 0)
         return result
 
