@@ -15,6 +15,7 @@ class Solution:
     def subset_help(self, result, l, nums, pos):
         new_list = l.copy()
         result.append(new_list)
+        print(new_list)
         for i in range(pos, len(nums)):
             l.append(nums[i])
             self.subset_help(result, l, nums, i+1)
@@ -22,3 +23,5 @@ class Solution:
 
 s = Solution()
 print(s.subsets([1, 2, 3]))
+print('---------')
+print(s.subsets([1, 2, 2]))
