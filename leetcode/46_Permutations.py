@@ -9,7 +9,6 @@ class Solution:
 
 
     def permute_helper(self, result, l, nums):
-        print(l)
         if len(l) == len(nums):
             new_list = l.copy()
             result.append(new_list)
