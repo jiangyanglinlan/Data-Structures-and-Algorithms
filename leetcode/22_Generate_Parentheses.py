@@ -11,7 +11,6 @@ class Solution:
         self.helper(result, s, n, n, 0)
         return result
 
-
     def helper(self, result, s, left_remind, right_remind, index):
         if index == len(s):
             result.append(s)
