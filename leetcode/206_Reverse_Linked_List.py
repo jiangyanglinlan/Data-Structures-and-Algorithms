@@ -20,8 +20,8 @@ class Solution(object):
             return head
         prev = None
         while head is not None:
-            temp = head.next
-            head.next = prev
-            prev = head
-            head = temp
+            temp = head.next # 使用 temp 保存 head 的后一个节点
+            head.next = prev # 将 head 指向假定的前一个节点
+            prev = head # 把 head 设置为新的 prev
+            head = temp # 头结点变为 temp
         return prev  # while 循环后, head 指向了原链表最后一个元素的 next, 也就是 None, 所以要返回 prev
