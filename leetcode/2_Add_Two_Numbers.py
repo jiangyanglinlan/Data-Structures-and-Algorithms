@@ -39,4 +39,49 @@ class Solution(object):
         li = [int(i) for i in str(int(first_number)+int(seconde_number))]
         li.reverse()
         return li
-        
+
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        # 模拟竖式运算
+        dummy = ListNode(None)
+        old_node = ListNode(None)
+        dummy.next = old_node
+        carry = 0
+        while l1 is not None and l2 is not None:
+            num1 = l1.val
+            num2 = l2.val
+            sum = num1 + num2 + carry
+            remainder = sum % 10  # 余数
+            carry = sum // 10  # 进位
+            new_node = ListNode(remainder)
+            old_node.next = new_node
+            old_node = new_node
+            l1 = l1.next
+            l2 = l2.next
+
+        while l1 is not None:
+            sum = l1.val + carry
+            remainder = sum % 10  # 余数
+            carry = sum // 10  # 进位
+            new_node = ListNode(remainder)
+            old_node.next = new_node
+            old_node = new_node
+            l1 = l1.next
+
+        while l2 is not None:
+            sum = l2.val + carry
+            remainder = sum % 10  # 余数
+            carry = sum // 10  # 进位
+            new_node = ListNode(remainder)
+            old_node.next = new_node
+            old_node = new_node
+            l2 = l2.next
+
+        if carry != 0:
+            old_node.next = ListNode(1)
+
+        return dummy.next.next
