@@ -52,7 +52,7 @@ class Solution:
         find_inorder = dict()
         for i in range(0, len(inorder)):
             find_inorder[inorder[i]] = i
-        return self.helper2(preorder, 0, len(inorder), find_inorder)
+        return self.helper2(preorder, 0, len(inorder) - 1, find_inorder)
 
 
     def helper2(self, preorder, start, end, find_inorder):
