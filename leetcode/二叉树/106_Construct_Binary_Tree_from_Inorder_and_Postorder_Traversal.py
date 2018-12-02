@@ -45,8 +45,7 @@ class Solution:
         find_inorder = dict()
         for i in range(0, len(inorder)):
             find_inorder[inorder[i]] = i
-        return self.helper2(postorder, 0, len(inorder), find_inorder)
-
+        return self.helper2(postorder, 0, len(inorder) - 1, find_inorder)
 
     def helper2(self, postorder, start, end, find_inorder):
         if len(postorder) == 0:
@@ -55,8 +54,6 @@ class Solution:
             return None
 
         root = TreeNode(postorder.pop())
-        if start == end:
-            return root
-        root.left = self.helper2(postorder, start, find_inorder[root.val] - 1, find_inorder)
         root.right = self.helper2(postorder, find_inorder[root.val] + 1, end, find_inorder)
+        root.left = self.helper2(postorder, start, find_inorder[root.val] - 1, find_inorder)
         return root
