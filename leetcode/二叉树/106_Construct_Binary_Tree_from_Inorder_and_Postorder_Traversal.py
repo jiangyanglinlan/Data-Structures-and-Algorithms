@@ -33,3 +33,30 @@ class Solution:
             if inorder[i] == value:
                 return i
         return -1
+
+    def buildTree2(self, inorder, postorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        if postorder is None and inorder is None or (len(postorder) == 0 or len(inorder) == 0):
+            return None
+        find_inorder = dict()
+        for i in range(0, len(inorder)):
+            find_inorder[inorder[i]] = i
+        return self.helper2(postorder, 0, len(inorder), find_inorder)
+
+
+    def helper2(self, postorder, start, end, find_inorder):
+        if len(postorder) == 0:
+            return None
+        if start > end:
+            return None
+
+        root = TreeNode(postorder.pop())
+        if start == end:
+            return root
+        root.left = self.helper2(postorder, start, find_inorder[root.val] - 1, find_inorder)
+        root.right = self.helper2(postorder, find_inorder[root.val] + 1, end, find_inorder)
+        return root
