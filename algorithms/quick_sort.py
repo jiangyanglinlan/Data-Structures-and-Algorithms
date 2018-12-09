@@ -14,7 +14,8 @@ def quick_sort(array):
 def quick_sort2(array, begin, end):
     if begin >= end:
         return
-    pivot_postion = partition(array, begin, end)
+    # pivot_postion = partition(array, begin, end)
+    pivot_postion = partition2(array, begin, end)
     quick_sort2(array, begin, pivot_postion - 1)
     quick_sort2(array, pivot_postion + 1, end)
 
@@ -30,6 +31,23 @@ def partition(nums, begin, end):
         nums[end] = nums[begin]
     nums[begin] = pivot
     return begin
+
+
+def partition2(nums, begin, end):
+    key = nums[end]
+    j = begin - 1
+
+    for i in range(begin, end):
+        if nums[i] <= key:
+            j += 1
+            if i != j:
+                swap(nums, i, j)
+    swap(nums, j + 1, end)
+    return j + 1
+
+
+def swap(nums, i, j):
+    nums[i], nums[j] = nums[j], nums[i]
 
 
 def random_int_list(start, stop, length):
